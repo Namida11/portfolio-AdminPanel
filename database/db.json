@@ -1,0 +1,187 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Web Design",
+      "description": "Duis molestie enim mattis gravida viverra. Fusce ut eros augue. Sed id mauris vel neque",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971695/gvhsspfmffst0orgyk8t.png"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Photography",
+      "description": "Fusce lorem ex, fringilla eget consequat ut, molestie sit amet nibh. Nullam vitae tincidunt",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971717/coca9wr9fmbtfjrfl6fr.png"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Video Editing",
+      "description": "Aenean pretium nulla libero, vitae iaculis libero efficitur a. Fusce ut augue finibus quam",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971741/smqqujff6jj2b2mj4zas.png"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Copy Writing",
+      "description": "Fusce lorem ex, fringilla eget consequat ut, molestie sit amet nibh. Nullam vitae tincidunt",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971769/ysrxf3pjfqzajewttbyp.png"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Coding",
+      "description": "Aenean pretium nulla libero, vitae iaculis libero efficitur a. Fusce ut augue finibus quam",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971793/qa1urfxhtix8sssahvov.png"
+      }
+    },
+    {
+      "id": 6,
+      "name": "App Developing",
+      "description": "Duis molestie enim mattis gravida viverra. Fusce ut eros augue. Sed id mauris vel neque",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716971814/dc2mbnqeexpenjhzuxjb.png"
+      }
+    }
+  ],
+  "about": [
+    {
+      "id": 1,
+      "name": "Jonathan Doe",
+      "email": "hello@example.com",
+      "phone": "+1 908-736-1801",
+      "twitter": "freelancer9",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716878436/hywdqggpkn73ciovplqq.jpg"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "name": "Webdesign",
+      "percentage": "100"
+    },
+    {
+      "id": 2,
+      "name": "Photography",
+      "percentage": "80"
+    },
+    {
+      "id": 3,
+      "name": "Coding",
+      "percentage": "90"
+    },
+    {
+      "id": 4,
+      "name": "Copywriting",
+      "percentage": "60",
+      "updatedSkill": {
+        "name": "ffg",
+        "percentage": ""
+      }
+    }
+  ],
+  "portfolio": [
+    {
+      "id": 1,
+      "name": "pehaz",
+      "category": "Branding",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716904294/uv3xbmmxtqhgeywagosi.png"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Purity",
+      "category": "Identity",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716904332/tjbmkdzfvegsevnxdvki.png"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Browar",
+      "category": "Webdesign",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716905398/shqvybyskjeuh45qsxgn.png"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Boombox",
+      "category": "App Developing",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716905445/bv18uyyazbubysaftxoa.png"
+      }
+    }
+  ],
+  "testimonial": [
+    {
+      "id": 1,
+      "fullname": "John Brown",
+      "review": "\r\n                                        Nam egestas porta posuere. Nunc velit lorem, vestibulum vitae massa nec, lacinia dictum\r\n                                        ligula. Quisque scelerisque nec dolor id convallis. Vestibulum porta ipsum pretium\r\n                                        turpis rhoncus, non fringilla ipsum mattis.",
+      "position": "Abc Arhitects",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716989376/testimonial/gb2psjmye06rzdvobln4.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "fullname": "Jano Doe",
+      "review": "\r\n                                        In id nulla magna. Nullam posuere fermentum mattis. Nunc id dui at sapien faucibus\r\n                                        fermentum ut vel diam. Nullam tempus, nunc id efficitur sagittis\r\n                                    ",
+      "position": "Bristol Creative",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716989766/testimonial/olxwbjkd9xnf0ccubb5i.jpg"
+      }
+    }
+  ],
+  "application": [
+    {
+      "id": 1,
+      "name": "Namida",
+      "email": "hello@example.com",
+      "subject": "Internship",
+      "message": "hello how are you?"
+    },
+    {
+      "id": 2,
+      "name": "salamm",
+      "subject": "subjectt",
+      "message": "hellloooo"
+    },
+    {
+      "id": 3,
+      "name": "salamm",
+      "subject": "subjectt",
+      "message": "hellloooo"
+    },
+    {
+      "id": 4,
+      "name": "fsdf",
+      "email": "namida@fh",
+      "subject": "sff",
+      "message": "sd"
+    },
+    {
+      "id": 5,
+      "name": "sdfssdfsd",
+      "email": "namida@fh",
+      "subject": "sdssds",
+      "message": "ads"
+    },
+    {
+      "id": 6,
+      "name": "fdf",
+      "email": "sdfs@gmail",
+      "subject": "sf",
+      "message": "ssd"
+    }
+  
+  ]
+}

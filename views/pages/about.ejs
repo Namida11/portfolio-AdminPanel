@@ -1,0 +1,122 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+
+<section id="about" class="about-section p-3">
+  <h2>About Me</h2>
+  <form id="about-form">
+    <div class="mb-3">
+      <label for="admin-name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="admin-name"
+        name="admin-name"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="admin-email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="admin-email"
+        name="admin-email"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="admin-number" class="form-label">Phone Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="admin-number"
+        name="admin-number"
+        placeholder="Enter your phone number"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="admin-twitter" class="form-label">Twitter Profile</label>
+      <input
+        type="url"
+        class="form-control"
+        id="admin-twitter"
+        name="admin-twitter"
+        placeholder="Enter your Twitter profile URL"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="admin-image" class="form-label">Upload Image</label>
+      <input
+        type="file"
+        class="form-control"
+        id="admin-image"
+        name="admin-image"
+        accept="image/*"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="admin-cv" class="form-label">Upload CV</label>
+      <input
+        type="file"
+        class="form-control"
+        id="admin-cv"
+        name="admin-cv"
+        accept=".pdf, .doc, .docx"
+        required
+      />
+    </div>
+    <button type="submit" id="aboutSave" class="btn btn-primary">
+      Save Changes
+    </button>
+  </form>
+</section>
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+<script>
+  const aboutSaveBtn = document.querySelector("#aboutSave");
+  const getAllAboutData = async () => {
+    const resJson = await fetch("http://localhost:8000/about/getall", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const res = await resJson.json();
+    console.log(res.data);
+  };
+  getAllAboutData();
+
+  const addAbout = async (e) => {
+    console.log("Add aboutt");
+    try {
+      const adminName = document.getElementById("admin-name").value;
+      const adminImg = document.getElementById("admin-image").files[0];
+      const adminEmail = document.getElementById("admin-email").value;
+      const adminPhone = document.getElementById("admin-number").value;
+      const adminTwitter = document.getElementById("admin-twitter").value;
+
+      const formData = new FormData();
+
+      formData.append("name", adminName);
+      formData.append("email", adminEmail);
+      formData.append("phone", adminPhone);
+      formData.append("twitter", adminTwitter);
+      formData.append("files", adminImg);
+
+      const response = await fetch("http://localhost:8000/about/create", {
+        method: "POST",
+        body: formData,
+      });
+      alert("elave oldu");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("error");
+    }
+  };
+
+  aboutSaveBtn.addEventListener("click", addAbout);
+</script>

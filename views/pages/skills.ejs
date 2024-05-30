@@ -1,0 +1,173 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+
+<section id="skills" class="skills-section">
+  <h2>Manage Skills</h2>
+  <form id="skills-form" class="mb-4">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="skill-name" class="form-label">Skill Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="skill-name"
+          name="skill-name"
+          placeholder="Enter skill name"
+          required
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="skill-percentage" class="form-label"
+          >Skill Percentage</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="skill-percentage"
+          name="skill-percentage"
+          placeholder="Enter skill percentage"
+          required
+          min="0"
+          max="100"
+        />
+      </div>
+    </div>
+    <a href="#" id="addSkillBtn" class="btn btn-primary">Save Skill</a>
+  </form>
+  <table class="table table-striped text-center">
+    <thead class="text-center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Skill Name</th>
+        <th scope="col">Skill Percentage</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="skills-list"></tbody>
+  </table>
+</section>
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+
+<script>
+  const addSkillBtn = document.querySelector("#addSkillBtn");
+  let isEditing = false;
+  let editingId = null;
+
+  const getAllSkills = async () => {
+    const resJson = await fetch("http://localhost:8000/skills/getall", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const res = await resJson.json();
+    console.log(res, "skilss dataaa");
+    return res.data;
+  };
+
+  const bindTable = async (datas) => {
+    datas = Array.from(datas);
+
+    const tbody = document.querySelector("#skills-list");
+    console.log(datas, "skillll");
+    let res = "";
+    if (datas.length !== 0) {
+      datas.forEach((data) => {
+        res += `<tr>
+        <th scope="row">${data.id}</th>
+        <td>${data.name}</td>
+        <td>${data.percentage}</td>
+        <td id="edit-${data.id}" class="editTd"><i class="fas fa-edit actionBtn" data-id="${data.id}"></i></td>
+        <td id="delete-${data.id}" class="deleteTd"><i class="fas fa-trash actionBtn" data-id="${data.id}"></i></td>
+      </tr>`;
+      });
+    } else {
+      res += `<td colspan="4">There are no skills available.</td>`;
+    }
+
+    tbody.innerHTML = res;
+    bindActions();
+  };
+
+  const bindActions = () => {
+    const editButtons = document.querySelectorAll(".editTd .actionBtn");
+    const deleteButtons = document.querySelectorAll(".deleteTd .actionBtn");
+
+    editButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = button.getAttribute("data-id");
+        isEditing = true;
+        editingId = id;
+        document.querySelector("#skill-name").value = "";
+        document.querySelector("#skill-percentage").value = "";
+        addSkillBtn.textContent = "Update Skill";
+      });
+    });
+
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        console.log("deleeteee");
+        const id = button.getAttribute("data-id");
+        await deleteSkill(id);
+      });
+    });
+  };
+
+  const createOrUpdateSkill = async () => {
+    const skillName = document.querySelector("#skill-name").value;
+    const percentage = document.querySelector("#skill-percentage").value;
+
+    const skill = {
+      name: skillName,
+      percentage: percentage,
+    };
+
+    if (isEditing) {
+      await updateSkill(editingId, skill);
+      isEditing = false;
+      editingId = null;
+      addSkillBtn.textContent = "Save Skill";
+    } else {
+      await createSkill(skill);
+    }
+
+    showDatas();
+  };
+
+  const createSkill = async (newSkill) => {
+    const resJson = await fetch("http://localhost:8000/skills/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newSkill),
+    });
+  };
+
+  const updateSkill = async (id, updatedSkill) => {
+    const resJson = await fetch(`http://localhost:8000/skills/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedSkill),
+    });
+    console.log(resJson, "updatedddd");
+  };
+
+  const deleteSkill = async (id) => {
+    const resJson = await fetch(`http://localhost:8000/skills/delete/${id}`, {
+      method: "DELETE",
+    });
+    console.log(resJson);
+  };
+
+  addSkillBtn.addEventListener("click", createOrUpdateSkill);
+
+  const showDatas = async () => {
+    const allData = await getAllSkills();
+    bindTable(allData);
+  };
+
+  showDatas();
+</script>

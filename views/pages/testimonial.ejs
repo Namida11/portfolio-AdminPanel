@@ -1,0 +1,73 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+
+<div class="container mt-5">
+  <h1 class="text-center">Testimonials</h1>
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <form>
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            name="fullName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="jobTitle" class="form-label">Job Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="jobTitle"
+            name="jobTitle"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="review" class="form-label">Review</label>
+          <textarea
+            class="form-control"
+            id="review"
+            name="review"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image" />
+        </div>
+        <a href="#" class="btn btn-primary" id="addReviewBtn">Submit</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+
+<script>
+  const addReviewBtn = document.querySelector("#addReviewBtn");
+
+  const addReview = async () => {
+    console.log("Testimonila click");
+    const testimonialFullName = document.getElementById("fullName").value;
+    const testimonialReview = document.getElementById("review").value;
+    const testimonialJob = document.getElementById("jobTitle").value;
+    const testimonialImg = document.getElementById("image").files[0];
+
+    const formData = new FormData();
+
+    formData.append("fullname", testimonialFullName);
+    formData.append("review", testimonialReview);
+    formData.append("position", testimonialJob);
+    formData.append("files", testimonialImg);
+
+    const response = await fetch("http://localhost:8000/testimonial/create", {
+      method: "POST",
+      body: formData,
+    });
+    const res = await response.json();
+    console.log(res);
+  };
+
+  addReviewBtn.addEventListener("click", addReview);
+</script>

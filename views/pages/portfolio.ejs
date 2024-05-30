@@ -1,0 +1,126 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+
+<section id="portfolio" class="portfolio-section mb-5 p-5">
+  <h2>Manage Portfolio</h2>
+
+  <form id="portfolio-form" class="mb-4" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="portfolio-name" class="form-label">Project Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="portfolio-name"
+          name="portfolio-name"
+          placeholder="Enter project name"
+          required
+        />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="portfolio-category" class="form-label">Category</label>
+        <input
+          type="text"
+          class="form-control"
+          id="portfolio-category"
+          name="portfolio-category"
+          placeholder="Enter category"
+          required
+        />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="portfolio-image" class="form-label">Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="portfolio-image"
+          name="portfolio-image"
+          required
+        />
+      </div>
+    </div>
+    <a href="#" id="savePortfBtn" class="btn btn-primary">Save Project</a>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Project Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="portfolio-list"></tbody>
+  </table>
+</section>
+
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+
+<script>
+  const saveBtn = document.querySelector("#savePortfBtn");
+  const getAllPortfolio = async () => {
+    const resJson = await fetch("http://localhost:8000/portfolio/getall", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await resJson.json();
+    return result.data;
+  };
+
+  const bindTable = async (datas) => {
+    const portfolioList = document.querySelector("#portfolio-list");
+    let res = "";
+    console.log(datas);
+    datas = Array.from(datas);
+    datas.forEach((data) => {
+      res += `<tr>
+          <th scope="row">${data.id}</th>
+          <td>${data.name}</td>
+          <td>${data.category}</td>
+          <td><img src="${data.image.url}" tyle="width: 70px" height="70px"></td>
+          <td id="edit-${data.id}" class="editTd"><i class="fas fa-edit actionBtn"></i></td>
+          <td id="delete-${data.id}" class="deleteTd"><i class="fas fa-trash actionBtn"></i></td>
+        </tr>`;
+    });
+    portfolioList.innerHTML = res;
+    console.log(portfolioList);
+  };
+
+  const showDatas = async () => {
+    const allData = await getAllPortfolio();
+    bindTable(allData);
+  };
+
+  const addPortfolio = async (e) => {
+    console.log("portfolio");
+    try {
+      const portfolioName = document.getElementById("portfolio-name").value;
+
+      const portfolioCategory =
+        document.getElementById("portfolio-category").value;
+
+      const portfolioImg = document.getElementById("portfolio-image").files[0];
+
+      const formData = new FormData();
+
+      formData.append("name", portfolioName);
+      formData.append("category", portfolioCategory);
+      formData.append("files", portfolioImg);
+
+      const response = await fetch("http://localhost:8000/portfolio/create", {
+        method: "POST",
+        body: formData,
+      });
+      alert("elave oldu");
+      showDatas();
+    } catch (error) {
+      console.error("Error:", error);
+      alert("error");
+    }
+  };
+  saveBtn.addEventListener("click", addPortfolio);
+  showDatas();
+</script>

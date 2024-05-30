@@ -1,0 +1,264 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+
+<div id="services" class="w-100 h-50">
+  <div class="container mt-5">
+    <h2>Services</h2>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      id="modalOpenBtn"
+      onclick="prepareAddService()"
+    >
+      Add Service
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Service</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="serviceForm">
+              <div class="form-group">
+                <input
+                  type="hidden"
+                  class="form-control"
+                  id="hiddenInp"
+                  name="hiddenInp"
+                />
+              </div>
+              <div class="form-group">
+                <label for="serviceName">Service Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="serviceName"
+                  name="serviceName"
+                  placeholder="Enter service name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="serviceImg">Image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="serviceImg"
+                  name="serviceImg"
+                  placeholder="Upload image"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  rows="4"
+                  placeholder="Enter description"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              id="closeBtn"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveBtn">
+              Save changes
+            </button>
+            <button type="button" class="btn btn-warning d-none" id="editBtn">
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Service Name</th>
+        <th scope="col">Descriptions</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic content will be injected here -->
+    </tbody>
+  </table>
+</div>
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+<script>
+  const saveBtn = document.querySelector("#saveBtn");
+  const closeBtn = document.querySelector("#closeBtn");
+  const serviceName = document.querySelector("#serviceName");
+  const serviceImg = document.querySelector("#serviceImg");
+  const description = document.querySelector("#description");
+  const modalOpenBtn = document.querySelector("#modalOpenBtn");
+  const editBTN = document.querySelector("#editBtn");
+
+  const addServices = async (e) => {
+    try {
+      const serviceName = document.getElementById("serviceName").value;
+      const serviceImg = document.getElementById("serviceImg").files[0];
+      const description = document.getElementById("description").value;
+      const formData = new FormData();
+
+      formData.append("name", serviceName);
+      formData.append("files", serviceImg);
+      formData.append("description", description);
+
+      const response = await fetch("http://localhost:8000/services/create", {
+        method: "POST",
+        body: formData,
+      });
+      closeBtn.click();
+
+      showDatas();
+    } catch (error) {
+      console.error("Error:", error);
+      alert("error");
+    }
+  };
+
+  const bindTable = async (datas) => {
+    const tbody = document.querySelector("tbody");
+
+    let res = "";
+    datas = Array.from(datas);
+    if (datas.length != 0) {
+      datas.forEach((data) => {
+        res += `<tr>
+          <th scope="row">${data.id}</th>
+          <td>${data.name}</td>
+          <td>${data.description}</td>
+          <td id="edit-${data.id}" class="editTd"><i class="fas fa-edit actionBtn"></i></td>
+          <td id="delete-${data.id}" class="deleteTd"><i class="fas fa-trash actionBtn"></i></td>
+        </tr>`;
+      });
+    } else {
+      res += `<td colspan=4>Services not</td>`;
+    }
+
+    tbody.innerHTML = res;
+  };
+
+  const showDatas = async () => {
+    const allData = await getAllData();
+    bindTable(allData);
+  };
+
+  const getAllData = async () => {
+    const resJson = await fetch("http://localhost:8000/services/getall", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const res = await resJson.json();
+    return res.data;
+  };
+
+  const prepareAddService = () => {
+    saveBtn.classList.remove("d-none");
+    editBTN.classList.add("d-none");
+    document.getElementById("serviceForm").reset();
+  };
+
+  const updateData = async (event, id) => {
+    event.preventDefault();
+    const allData = await getAllData();
+    const selectedData = allData.find((data) => data.id == id);
+    modalOpenBtn.click();
+    serviceName.value = selectedData.name;
+    description.value = selectedData.description;
+    document.getElementById("hiddenInp").value = id;
+
+    saveBtn.classList.add("d-none");
+    editBTN.classList.remove("d-none");
+  };
+
+  const saveUpdatedData = async () => {
+    const id = document.getElementById("hiddenInp").value;
+    const serviceName = document.getElementById("serviceName").value;
+    const serviceImg = document.getElementById("serviceImg").files[0];
+    const description = document.getElementById("description").value;
+
+    const formData = new FormData();
+    formData.append("name", serviceName);
+    if (serviceImg) {
+      formData.append("files", serviceImg);
+    }
+    formData.append("description", description);
+
+    const resJson = await fetch(`http://localhost:8000/services/edit/${id}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    closeBtn.click();
+    showDatas();
+  };
+
+  const deleteData = async (event, id) => {
+    event.preventDefault();
+
+    const resJson = await fetch(`http://localhost:8000/services/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    showDatas();
+  };
+
+  const serviceAction = () => {
+    saveBtn.addEventListener("click", addServices);
+    editBTN.addEventListener("click", saveUpdatedData);
+
+    document.querySelector("tbody").addEventListener("click", (event) => {
+      if (event.target.closest(".editTd")) {
+        const id = event.target.closest(".editTd").id.split("-")[1];
+        updateData(event, id);
+      } else if (event.target.closest(".deleteTd")) {
+        const id = event.target.closest(".deleteTd").id.split("-")[1];
+        deleteData(event, id);
+      }
+    });
+  };
+
+  const onload = () => {
+    showDatas();
+    serviceAction();
+  };
+
+  document.addEventListener("DOMContentLoaded", onload);
+</script>
