@@ -182,16 +182,39 @@
       "subject": "sf",
       "message": "ssd"
     }
-  
   ],
-  "contact":[
+  "contact": [
     {
-      "id":1,
-      "name":"Address",
-      "image":{
-        "url":"dsjhs"
+      "id": 1,
+      "name": "Address",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717068506/contact/vdlomb7nxfdemdciq3aw.png"
       },
-      "info":"999 Carter Street Sailor Springs, IL 62434"
+      "info": "999 Carter Street\r\nSailor Springs, IL 62434"
+    },
+    {
+      "id": 2,
+      "name": "Phone",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717068658/contact/xi3y7qizkqetqak1gzrd.png"
+      },
+      "info": "+1 618-689-9409\r\n+1 781-254-8437"
+    },
+    {
+      "id": 3,
+      "name": "Email",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717068694/contact/zqkvfef9vhw0vdyqulzt.png"
+      },
+      "info": "hello@example.com\r\nsupport@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Facebook Chat",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717068725/contact/xlktvap3341tetnf6idt.png"
+      },
+      "info": "me.freelancer3"
     }
   ]
 }

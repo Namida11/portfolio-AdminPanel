@@ -33,8 +33,11 @@ const APPLICATION_GET_ALL_ENDPOINT = "/application/getall";
 const APPLICATION_CREATE_ENDPOINT = "/application/create";
 
 const CONTACT_PAGE_ENDPOINT = "/contact";
+const CONTACT_GET_ENDPOINT = "/contact/get/";
 const CONTACT_GET_ALL_ENDPOINT = "/contact/getall";
 const CONTACT_CREATE_ENDPOINT = "/contact/create";
+const CONTACT_DELETE_ENDPOINT = "/contact/delete/";
+const CONTACT_UPDATE_ENDPOINT = "/contact/update/";
 
 module.exports = {
   DEFAULT_ENDPOINT,
@@ -66,4 +69,7 @@ module.exports = {
   CONTACT_PAGE_ENDPOINT,
   CONTACT_GET_ALL_ENDPOINT,
   CONTACT_CREATE_ENDPOINT,
+  CONTACT_GET_ENDPOINT,
+  CONTACT_DELETE_ENDPOINT,
+  CONTACT_UPDATE_ENDPOINT,
 };

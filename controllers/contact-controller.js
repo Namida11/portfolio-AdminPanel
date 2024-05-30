@@ -23,6 +23,19 @@ const getAllContact = async (req, res) => {
   );
 };
 
+const getContactController = async (req, res, id) => {
+  const result = await contactService.getContact(id);
+  generateResponce(
+    new ResponceConfig(
+      200,
+      req,
+      res,
+      CONTENT_TYPES[".json"],
+      JSON.stringify(result)
+    )
+  );
+};
+
 const createContact = async (req, res) => {
   const formData = await parseFormData(req);
 
@@ -49,9 +62,48 @@ const createContact = async (req, res) => {
     )
   );
 };
+const deleteContact = async (req, res, id) => {
+  const result = await contactService.deleteContact(id);
+  generateResponce(
+    new ResponceConfig(
+      200,
+      req,
+      res,
+      CONTENT_TYPES[".json"],
+      JSON.stringify(result)
+    )
+  );
+};
 
+const updateContact = async (req, res, id) => {
+  const formData = await parseFormData(req);
+  const file = formData.files.files[0];
+  const imageUrl = await saveCloudinary(file, "contact");
+  const { name, info } = formData.fields;
+  const newContact = {
+    id: id,
+    name: name[0],
+    image: { url: imageUrl },
+    info: info[0],
+  };
+
+  const result = await contactService.updateContact(newContact);
+
+  generateResponce(
+    new ResponceConfig(
+      201,
+      req,
+      res,
+      CONTENT_TYPES[".json"],
+      JSON.stringify(result)
+    )
+  );
+};
 module.exports = {
   getContactPage,
   getAllContact,
+  getContactController,
   createContact,
+  deleteContact,
+  updateContact,
 };

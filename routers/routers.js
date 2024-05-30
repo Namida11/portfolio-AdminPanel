@@ -36,6 +36,9 @@ const {
   CONTACT_PAGE_ENDPOINT,
   CONTACT_GET_ALL_ENDPOINT,
   CONTACT_CREATE_ENDPOINT,
+  CONTACT_GET_ENDPOINT,
+  CONTACT_DELETE_ENDPOINT,
+  CONTACT_UPDATE_ENDPOINT,
 } = require("../utils/url-helper");
 
 const Router = require("./router");
@@ -111,5 +114,15 @@ router.addRoute(CONTACT_PAGE_ENDPOINT, contactController.getContactPage);
 router.addRoute(CONTACT_GET_ALL_ENDPOINT, contactController.getAllContact);
 
 router.addRoute(CONTACT_CREATE_ENDPOINT, contactController.createContact);
+
+router.addRoute(
+  CONTACT_GET_ENDPOINT,
+  contactController.getContactController,
+  true
+);
+
+router.addRoute(CONTACT_DELETE_ENDPOINT, contactController.deleteContact, true);
+
+router.addRoute(CONTACT_UPDATE_ENDPOINT, contactController.updateContact, true);
 
 module.exports = router.handlerRoute.bind(router);
