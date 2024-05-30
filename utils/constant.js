@@ -33,6 +33,7 @@ const JSON_KEYS = Object.freeze({
   PORTFOLIO: "portfolio",
   TESTIMONIAL: "testimonial",
   APPLICATION: "application",
+  CONTACT: "contact",
 });
 
 module.exports = {

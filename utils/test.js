@@ -3,7 +3,7 @@ const formidable = require("formidable");
 const parseFormData = (req) => {
   return new Promise((resolve, reject) => {
     const form = new formidable.IncomingForm();
-    form.uploadDir = "./public/uploads"; // Yüklenen dosyaların saklanacağı klasör
+    form.uploadDir = "./public/uploads"; 
     form.keepExtensions = true;
 
     form.parse(req, (err, fields, files) => {

@@ -5,6 +5,7 @@ const skillsController = require("../controllers/skills-controller");
 const portfolioController = require("../controllers/portfolio-controller");
 const testimonialController = require("../controllers/testimonial-controller");
 const applicationController = require("../controllers/application-Controller");
+const contactController = require("../controllers/contact-controller");
 
 const {
   SERVICE_ENDPOINT,
@@ -32,6 +33,9 @@ const {
   SKILLS_UPDATE_ENDPOINT,
   APPLICATION_GET_ALL_ENDPOINT,
   APPLICATION_CREATE_ENDPOINT,
+  CONTACT_PAGE_ENDPOINT,
+  CONTACT_GET_ALL_ENDPOINT,
+  CONTACT_CREATE_ENDPOINT,
 } = require("../utils/url-helper");
 
 const Router = require("./router");
@@ -100,4 +104,12 @@ router.addRoute(
   APPLICATION_CREATE_ENDPOINT,
   applicationController.createApplication
 );
+
+//contact
+router.addRoute(CONTACT_PAGE_ENDPOINT, contactController.getContactPage);
+
+router.addRoute(CONTACT_GET_ALL_ENDPOINT, contactController.getAllContact);
+
+router.addRoute(CONTACT_CREATE_ENDPOINT, contactController.createContact);
+
 module.exports = router.handlerRoute.bind(router);

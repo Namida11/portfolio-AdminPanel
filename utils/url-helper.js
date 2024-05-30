@@ -3,7 +3,6 @@ const DEFAULT_ENDPOINT = "/";
 const SERVICE_ENDPOINT = "/services/getall";
 const SERVICE_GET_BY_ID_ENDPOINT = "/services/get/";
 const SERVICE_PAGE_ENDPOINT = "/services";
-
 const SERVICE_CREATE_ENDPOINTS = "/services/create";
 const SERVICE_EDIT_ENDPOINTS = "/services/edit/";
 const SERVICE_DELETE_ENDPOINTS = "/services/delete/";
@@ -23,18 +22,19 @@ const SKILLS_DELETE_ENDPOINT = "/skills/delete/";
 
 const PORTFOLIO_PAGE_ENDPOINT = "/portfolio";
 const PORTFOLIO_GET_ENDPOINT = "/portfolio/getall";
-
 const PORTFOLIO_CREATE_ENDPOINT = "/portfolio/create";
 
 const TESTIMONIAL_PAGE_ENDPOINT = "/testimonial";
-
 const TESTIMONIAL_GET_ALL_ENDPOINT = "/testimonial/getall";
-
 const TESTIMONIAL_CREATE_ENDPOINT = "/testimonial/create";
 
 const APPLICATION_ENDPOINT = "/application";
 const APPLICATION_GET_ALL_ENDPOINT = "/application/getall";
 const APPLICATION_CREATE_ENDPOINT = "/application/create";
+
+const CONTACT_PAGE_ENDPOINT = "/contact";
+const CONTACT_GET_ALL_ENDPOINT = "/contact/getall";
+const CONTACT_CREATE_ENDPOINT = "/contact/create";
 
 module.exports = {
   DEFAULT_ENDPOINT,
@@ -63,4 +63,7 @@ module.exports = {
   APPLICATION_ENDPOINT,
   APPLICATION_GET_ALL_ENDPOINT,
   APPLICATION_CREATE_ENDPOINT,
+  CONTACT_PAGE_ENDPOINT,
+  CONTACT_GET_ALL_ENDPOINT,
+  CONTACT_CREATE_ENDPOINT,
 };
