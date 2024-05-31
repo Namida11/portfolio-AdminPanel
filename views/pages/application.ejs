@@ -1,0 +1,60 @@
+<%- include(rootPath +'/views/layouts/header.ejs') %>
+<section class="application-section mb-5 p-5">
+  <h3>Application Manager</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Message</th>
+      </tr>
+    </thead>
+    <tbody id="application-list"></tbody>
+  </table>
+</section>
+
+<%- include(rootPath +'/views/layouts/footer.ejs') %>
+<script>
+  const getAllApplication = async () => {
+    const resJson = await fetch("http://localhost:8000/application/getall", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const res = await resJson.json();
+    return res.data;
+  };
+
+  const bindApplication = async (datas) => {
+    const applicationList = document.querySelector("#application-list");
+    datas = Array.from(datas);
+    let res = "";
+    if (datas.length != 0) {
+      datas.forEach((data) => {
+        res += `<tr>
+        <th scope="row">${data.id}</th>
+        <td>${data.name}</td>
+        <td> ${data.email}</td>
+        <td>${data.subject}</td>
+        <td>${data.message}</td>
+       
+      </tr>`;
+      });
+    } else {
+      res += `<td colspan=5>Contact not</td>`;
+    }
+
+    applicationList.innerHTML = res;
+  };
+
+  const showApplication = async () => {
+    const allData = await getAllApplication();
+    bindApplication(allData);
+  };
+
+  showApplication();
+</script>

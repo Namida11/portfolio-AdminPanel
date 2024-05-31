@@ -209,53 +209,6 @@
       "email": "hello@example.com",
       "subject": "Internship",
       "message": "hello how are you?"
-    },
-    {
-      "id": 2,
-      "name": "salamm",
-      "subject": "subjectt",
-      "message": "hellloooo"
-    },
-    {
-      "id": 3,
-      "name": "salamm",
-      "subject": "subjectt",
-      "message": "hellloooo"
-    },
-    {
-      "id": 4,
-      "name": "fsdf",
-      "email": "namida@fh",
-      "subject": "sff",
-      "message": "sd"
-    },
-    {
-      "id": 5,
-      "name": "sdfssdfsd",
-      "email": "namida@fh",
-      "subject": "sdssds",
-      "message": "ads"
-    },
-    {
-      "id": 6,
-      "name": "fdf",
-      "email": "sdfs@gmail",
-      "subject": "sf",
-      "message": "ssd"
-    },
-    {
-      "id": 7,
-      "name": "sd",
-      "email": "dfdds@gmail.com",
-      "subject": "dfdf",
-      "message": "dsdsd"
-    },
-    {
-      "id": 8,
-      "name": "salammm",
-      "email": "salam@gmail",
-      "subject": "salam",
-      "message": "salam"
     }
   ],
   "contact": [

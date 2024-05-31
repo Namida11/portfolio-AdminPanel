@@ -39,6 +39,7 @@ const {
   CONTACT_GET_ENDPOINT,
   CONTACT_DELETE_ENDPOINT,
   CONTACT_UPDATE_ENDPOINT,
+  APPLICATION_ENDPOINT,
 } = require("../utils/url-helper");
 
 const Router = require("./router");
@@ -98,7 +99,7 @@ router.addRoute(
 );
 
 //application
-
+router.addRoute(APPLICATION_ENDPOINT, applicationController.getApplicationPage);
 router.addRoute(
   APPLICATION_GET_ALL_ENDPOINT,
   applicationController.getAllApllication

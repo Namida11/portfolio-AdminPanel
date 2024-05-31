@@ -2,8 +2,12 @@ const Application = require("../models/applicationModel");
 const applicationService = require("../services/applicationService");
 const { generateResponce, parseRequestBody } = require("../utils/common");
 const { CONTENT_TYPES } = require("../utils/constant");
+const loadEJS = require("../utils/load-ejs");
 const ResponceConfig = require("../utils/responce-config");
 
+const getApplicationPage = (req, res) => {
+  loadEJS("application", req, res);
+};
 const getAllApllication = async (req, res) => {
   const result = await applicationService.getAllAplication();
   generateResponce(
@@ -34,6 +38,7 @@ const createApplication = async (req, res) => {
 };
 
 module.exports = {
+  getApplicationPage,
   getAllApllication,
   createApplication,
 };
