@@ -81,15 +81,6 @@
       "id": 3,
       "name": "Coding",
       "percentage": "90"
-    },
-    {
-      "id": 4,
-      "name": "Copywriting",
-      "percentage": "60",
-      "updatedSkill": {
-        "name": "ffg",
-        "percentage": ""
-      }
     }
   ],
   "portfolio": [
@@ -209,6 +200,27 @@
       "email": "hello@example.com",
       "subject": "Internship",
       "message": "hello how are you?"
+    },
+    {
+      "id": 2,
+      "name": "heheh",
+      "email": "namida@fh",
+      "subject": "sjdjd",
+      "message": "djdjfdk"
+    },
+    {
+      "id": 3,
+      "name": "dfdfd",
+      "email": "vfvf@fgg",
+      "subject": "dfddf",
+      "message": "dfd"
+    },
+    {
+      "id": 4,
+      "name": "d",
+      "email": "dfd",
+      "subject": "rtt",
+      "message": "f"
     }
   ],
   "contact": [

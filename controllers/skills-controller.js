@@ -66,9 +66,11 @@ const deleteSkill = async (req, res, id) => {
 const updateDataSkill = async (req, res, id) => {
   const body = await parseRequestBody(req);
 
-  const updatedSkill = new Skill(body.name, body.percentage); 
+  let updatedSkill = new Skill({ id: id, ...body });
+
   console.log(id, "updatedid");
-  const result = await skillServices.updateDataSkill({ id, updatedSkill });
+  console.log(updatedSkill, "updated skill");
+  const result = await skillServices.updateDataSkill(updatedSkill);
   generateResponce(
     new ResponceConfig(
       200,

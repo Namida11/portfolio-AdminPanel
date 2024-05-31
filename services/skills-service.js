@@ -23,6 +23,7 @@ const deleteSkill = async (id) => {
   console.log(result, " RESULT");
   return new SuccessResult(COMMON_OPERATIONS_MESSAGES.DELETE_MESSAGE, result);
 };
+
 const updateDataSkill = async (model) => {
   const updatedData = await baseService.updateData(JSON_KEYS.SKILLS, model);
   console.log(model);
