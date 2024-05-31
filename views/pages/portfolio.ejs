@@ -52,12 +52,23 @@
     </thead>
     <tbody id="portfolio-list"></tbody>
   </table>
+  <div class="d-flex justify-content-between">
+    <button id="prevPageBtn" class="btn btn-outline-primary" disabled>
+      Previous Page
+    </button>
+    <button id="nextPageBtn" class="btn btn-outline-primary">Next Page</button>
+  </div>
 </section>
 
 <%- include(rootPath +'/views/layouts/footer.ejs') %>
 
 <script>
   const saveBtn = document.querySelector("#savePortfBtn");
+  const prevPageBtn = document.querySelector("#prevPageBtn");
+  const nextPageBtn = document.querySelector("#nextPageBtn");
+  let currentPage = 1;
+  let totalPages = 1;
+
   const getAllPortfolio = async () => {
     const resJson = await fetch("http://localhost:8000/portfolio/getall", {
       method: "GET",
@@ -86,12 +97,15 @@
         </tr>`;
     });
     portfolioList.innerHTML = res;
+    updatePaginationButtons();
     console.log(portfolioList);
   };
 
   const showDatas = async () => {
-    const allData = await getAllPortfolio();
-    bindTable(allData);
+    let allData = await getAllPortfolio();
+    allData = Array.from(allData);
+    totalPages = Math.ceil(allData.length / 4);
+    bindTable(allData.slice((currentPage - 1) * 4, currentPage * 4));
   };
 
   const addPortfolio = async (e) => {
@@ -121,6 +135,36 @@
       alert("error");
     }
   };
+
+  const nextPage = async () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showDatas();
+    }
+  };
+
+  const prevPage = async () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showDatas();
+    }
+  };
+  const updatePaginationButtons = () => {
+    if (currentPage === 1) {
+      prevPageBtn.disabled = true;
+    } else {
+      prevPageBtn.disabled = false;
+    }
+
+    if (currentPage === totalPages) {
+      nextPageBtn.disabled = true;
+    } else {
+      nextPageBtn.disabled = false;
+    }
+  };
+
   saveBtn.addEventListener("click", addPortfolio);
+  nextPageBtn.addEventListener("click", nextPage);
+  prevPageBtn.addEventListener("click", prevPage);
   showDatas();
 </script>

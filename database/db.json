@@ -58,7 +58,12 @@
       "twitter": "freelancer9",
       "image": {
         "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716878436/hywdqggpkn73ciovplqq.jpg"
-      }
+      },
+      "skills": [
+        "Creative Person",
+        "Photographer",
+        "Web Desinger"
+      ]
     }
   ],
   "skills": [
@@ -118,6 +123,62 @@
       "category": "App Developing",
       "image": {
         "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1716905445/bv18uyyazbubysaftxoa.png"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Carilo",
+      "category": "Web Design",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717138847/zxxofrfuwww4znm4zb7m.png"
+      }
+    },
+    {
+      "id": 6,
+      "name": "SawMill",
+      "category": "Coding",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717138949/dyarpkhwio1vnrrohtqr.png"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Wood Tables",
+      "category": "Experiment",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717139017/usptjsby3xkjertuqhsh.png"
+      }
+    },
+    {
+      "id": 8,
+      "name": "The Deer",
+      "category": "3D Art",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717139064/ungkpi84qzy2ravh76lt.png"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Kali",
+      "category": "Typography",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717139127/njn5mdczfsdottn4ssef.png"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Air Prufier",
+      "category": "Product Design",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717139224/tebuz79i5mn0g8emjrag.png"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Dafont",
+      "category": "Rebranding",
+      "image": {
+        "url": "http://res.cloudinary.com/dbkhapndo/image/upload/v1717139301/qnnzla5hgpjx9l0zo6gx.png"
       }
     }
   ],
@@ -181,6 +242,20 @@
       "email": "sdfs@gmail",
       "subject": "sf",
       "message": "ssd"
+    },
+    {
+      "id": 7,
+      "name": "sd",
+      "email": "dfdds@gmail.com",
+      "subject": "dfdf",
+      "message": "dsdsd"
+    },
+    {
+      "id": 8,
+      "name": "salammm",
+      "email": "salam@gmail",
+      "subject": "salam",
+      "message": "salam"
     }
   ],
   "contact": [
